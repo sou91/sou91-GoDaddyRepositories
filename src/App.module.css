@@ -1,0 +1,9 @@
+.searchBox{
+    max-width: 300px;
+}
+
+@media (max-width: 768px) {
+    .searchBox{
+        max-width: 100%;
+    }
+}

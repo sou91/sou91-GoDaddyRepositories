@@ -19,7 +19,7 @@ export const RepositoriesProvider = ({
             const response = await fetch(
                 'https://api.github.com/orgs/godaddy/repos'
             )
-            const repositoryData = await response.json()
+            const repositoryData = await response?.json()
             setRepositoryData(repositoryData)
         } catch (e) {
             console.error(e)

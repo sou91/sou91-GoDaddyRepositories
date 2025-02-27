@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { act, render, screen, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router'
@@ -60,16 +60,18 @@ describe('RepositoryList Component', () => {
         expect(screen.queryAllByText('gdapi')).toHaveLength(0)
     })
 
-    test('renders not found component for invalid url', () => {
-        render(
-            <MemoryRouter initialEntries={['/random-wrong-url']}>
-                {' '}
-                {/* Simulating wrong URL */}
-                <RepositoriesProvider>
-                    <AppRoutes />
-                </RepositoriesProvider>
-            </MemoryRouter>
-        )
+    test('renders not found component for invalid url', async () => {
+        await act(async () => {
+            render(
+                <MemoryRouter initialEntries={['/random-wrong-url']}>
+                    <RepositoriesProvider>
+                        <AppRoutes />
+                    </RepositoriesProvider>
+                </MemoryRouter>
+            )
+        })
+
+        // Ensure the "Page Not Found" message is displayed
         expect(screen.getByText('Page Not Found!!!')).toBeInTheDocument()
     })
 })

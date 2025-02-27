@@ -6,7 +6,7 @@ import { Avatar, Flex } from '@radix-ui/themes'
 
 const RepositoryListShimmer = () => {
     return (
-        <Flex gap='5' wrap='wrap' justify='center' p='5'>
+        <Flex gap='5' wrap='wrap' justify='center' p='5' data-testid='shimmer-list'>
             {Array.from({ length: 18 }).map((_, index) => (
                 <Box key={index} width='240px'>
                     <Card size='2'>
